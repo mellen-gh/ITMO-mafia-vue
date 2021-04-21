@@ -4,6 +4,7 @@
       <h3>{{ person.name + '#' + person.id }}</h3>
       <button class="btn danger" @click="$emit('remove', person.id)">Удалить</button>
     </div>
+    <div class="1233"></div>
   </div>
   <div class="card center" v-else>
     <h4>Людей пока нет.</h4>
