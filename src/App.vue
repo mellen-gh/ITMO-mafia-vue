@@ -1,6 +1,9 @@
 <template>
 
   <div class="container">
+
+    <app-alert :alert="alert" @close="alert = null"></app-alert>
+
     <form @submit.prevent="changes">
     <div class="card">
       <h2>Работа с базой данных</h2>
@@ -11,7 +14,11 @@
       <button class="btn primary" @click="loadPeople">werwer</button>
     </div>
     </form>
+
+    <app-loader v-if="loading"></app-loader>
+
     <app-people-list
+        v-else
         :people="people"
         @load="loadPeople"
         @remove="removePerson"
@@ -24,12 +31,16 @@
 
 import AppPeopleList from "@/AppPeopleList";
 import axios from 'axios'
+import AppAlert from "./AppAlert";
+import AppLoader from "./AppLoader";
 
 export default {
   data() {
     return {
       name: '',
-      people: []
+      people: [],
+      alert: null,
+      loading: false
     }
   },
   mounted() {
@@ -64,7 +75,25 @@ export default {
       this.name = ''
     },
     async loadPeople() {
-      const {data} = await axios.get('http://itmomafia.herokuapp.com/player/')
+      try {
+        this.loading = true;
+        const {data} = await axios.get('http://itmomafia.herokuapp.com/player/')
+        setTimeout(() => {
+          this.people = data
+
+          this.loading = false;
+        }, 1)
+
+      } catch (e) {
+        this.loading = false;
+        this.alert = {
+          type: 'danger',
+          title: 'Ошибка',
+          text: e.message
+        }
+        console.log(e.message);
+      }
+      //const {data} = await axios.get('http://itmomafia.herokuapp.com/player/')
       // const result = Object.keys(data).map(
       //   key => {
       //     return {
@@ -74,15 +103,26 @@ export default {
       //   }
       // )
 
-      this.people = data
+
 
     },
     async removePerson(id) {
-      await axios.delete(`http://itmomafia.herokuapp.com/player/${id}`)
-      this.people =  this.people.filter(person => person.id !== id)
+      try {
+        const person = this.people.find(person => person.id === id).name
+        await axios.delete(`http://itmomafia.herokuapp.com/player/${id}`)
+        this.people =  this.people.filter(person => person.id !== id)
+        this.alert = {
+          type: 'primary',
+          title: 'Успешно!',
+          text: `Пользователь с именем "${person}" был удален`
+        }
+      }catch (e) {
+
+      }
+
     }
   },
-  components: {AppPeopleList}
+  components: {AppPeopleList, AppAlert, AppLoader}
 }
 </script>
 
