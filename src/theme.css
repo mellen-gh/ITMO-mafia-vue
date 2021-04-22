@@ -13,6 +13,76 @@ body {
     background: #2c3e50;
 }
 
+/* --- */
+.scrollable {
+    overflow:hidden; overflow-y:scroll;
+}
+.gamePlayers {
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+.ulBorder {
+    list-style: none;
+    padding: 0;
+    margin-top:8px;
+
+}
+.ulBorder li {
+    font-family: "Trebuchet MS", "Lucida Sans";
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 1px 10px;
+    padding-top: 5px;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    border-left: 10px solid #41B883;
+    box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
+    -2px -2px 5px 0 rgba(0,0,0,.1),
+    2px 2px 5px 0 rgba(0,0,0,.1),
+    -2px 2px 5px 0 rgba(0,0,0,.1);
+    font-size: 14px;
+    transition: 0.3s all linear;
+    vertical-align: center;
+    background-color: #fff;
+}
+.menu-lab > .scrollable {
+    max-height: 17vh;
+    height: 17vh;
+    border: 3px solid #2c3e50;
+    border-radius: 15px;
+}
+.menu-lab {
+    margin: 12px;
+}
+.menu-lab > .center > h3 {
+    color: #fff;
+    border-bottom: 4px solid;
+    border-color: #41B883;
+    text-shadow: 1px 0 1px #000,
+    0 1px 1px #000,
+    -1px 0 1px #000,
+    0 -1px 1px #000;
+
+    font-size: 1.5rem;
+}
+.logos {
+    background-image:
+            url(../img/logo.svg);
+    width: 194px;
+    height: 194px;
+    margin-bottom: 2rem;
+
+}
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* --- */
+
 hr {
     margin: 1rem 0;
 }
@@ -60,7 +130,7 @@ h3 {
 }
 
 /*.primary {*/
-/*    color: #42b983;*/
+/*    color: #41B883;*/
 /*}*/
 
 /*.danger {*/
@@ -68,22 +138,23 @@ h3 {
 /*}*/
 
 .btn {
-    color: #42b983;
+    color: #41B883;
     position: relative;
     place-content: center;
     place-items: center;
     width: fit-content;
     border-radius: 99px;
     letter-spacing: 0.05em;
-    border: 1px solid #42b983;
+    border: 1px solid #41B883;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 10px;
-    padding: 0.5rem 1.5rem;
+    /*margin-right: 10px;*/
+    padding: 1rem 2rem;
     white-space: nowrap;
     font-weight: 700;
     outline: none;
     background: #fff;
+    font-size: 1.2em;
     transition: all 0.22s;
 }
 
@@ -105,7 +176,7 @@ h3 {
 }
 
 .btn.primary {
-    background: #42b983;
+    background: #41B883;
     color: #fff;
 }
 
@@ -150,7 +221,7 @@ h3 {
     border: 2px solid #ccc;
     display: block;
     width: 100%;
-    color: #2c3e50;
+    color: #425b75;
     padding: 0.5rem 1.5rem;
     border-radius: 3px;
     font-size: 1rem;
@@ -187,19 +258,20 @@ h3 {
 .form-control input:active,
 .form-control input:focus {
     transition: border 0.22s;
-    border: 2px solid #42b983;
+    border: 2px solid #41B883;
 }
 
 .card {
     padding: 1rem;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
     border-radius: 10px;
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
-    background: #fff;
+    background-color: #425b75;
+    height: 97vh;
 }
 
 .card.marked {
-    border: 4px solid #42b983;
+    border: 4px solid #41B883;
 }
 
 .card.center {
@@ -232,7 +304,7 @@ h3 {
 }
 
 .alert.primary {
-    border-color: #42b983;
+    border-color: #41B883;
     background-color: #f8f8f8;
 }
 
@@ -312,7 +384,7 @@ h3 {
     content: '';
 }
 .loader:after {
-    background: #2c3e50;
+    background: #425b75;
     width: 75%;
     height: 75%;
     border-radius: 50%;
