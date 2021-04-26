@@ -1,4 +1,4 @@
-<template>
+npm<template>
   <div v-if="people.length !== 0">
     <div class="card inline" v-for="person in people" :key="person.id">
       <h3>{{ person.name + '#' + person.id }}</h3>

@@ -1,76 +1,53 @@
 <template>
 
   <div class="container card">
-    <div class="center">
-      <div class="logos"></div>
-      <button class="button-start"><span>Начать игру</span></button>
+    <div class="form-control center" :class="inputWarning ? '' : 'invalid'" @submit.prevent="">
+      <input
+          type="text"
+          class="inputAdd"
+          ref="addInput"
+          id="addPlayer"
+          @input="assertMaxChars()"
+          v-model="value"/>
+      <button class="button-add" @click="addPlayer"><span>Добавить</span></button>
     </div>
-
-    <div class="menu-lab">
-      <div class="center">
-        <h3>Текущие игры</h3>
-      </div>
-      <div class="scrollableActive">
-        <ul class="ulBorder">
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-        </ul>
-      </div>
-      <div class="center">
-
-        <h3>Прошедшие игры</h3>
-      </div>
-      <div class="scrollable">
-        <ul class="ulBorder">
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-          <li>
-            <div class="gamePlayers">Артём П,Влад В,Артём П,Артём П,Влад В,Артём П</div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer">
-      <span class="copyright">
-          © 2021 vMafia
-      </span>
-    </div>
+    <footerM></footerM>
   </div>
 
 </template>
 
 <script>
-
 import axios from 'axios'
+import footerM from "@/footerM";
 
+export default {
+  data() {
+    return {
+      inputWarning: true,
+      value: '',
+      maxLengthInCars: 10,
+      minLengthInCars: 3
+    }
+  },
+  methods: {
+    addPlayer() {
+        this.$refs.addInput.value = ''
+     if (this.value.length <= this.minLengthInCars) {
+        this.inputWarning = false
+        console.log(1)
+       this.$refs.addInput.blur()
+      }
 
-export default {}
+    },
+    assertMaxChars: function () {
+      if (this.value.length >= this.maxLengthInCars) {
+        this.value = this.value.substring(0,this.maxLengthInCars);
+      }
+
+    }
+  },
+  components: {footerM}
+}
 </script>
 
 <style>
